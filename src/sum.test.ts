@@ -1,4 +1,4 @@
-const testSum = require('./sum');
+import { sum as testSum } from './sum'
 
 describe('SOMMA', () => {
     test('somma di due interi positivi', () => {
@@ -9,3 +9,5 @@ describe('SOMMA', () => {
         expect(testSum(3, -5)).toBe(-2);
     })
 });
+
+

@@ -3,9 +3,6 @@ import Koa from "koa"
 import Router from "koa-router"
 import { sum } from './sum'
 
-// const Koa = require('koa');
-// const Router = require('koa-router');
-// const sum = require('./sum');
 
 const app = new Koa();
 const router = new Router();

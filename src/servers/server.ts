@@ -1,10 +1,6 @@
 import Koa from 'koa'
 import { getConfigs } from '../config/config'
 import { getRouter } from '../routers/router'
-import render from "koa-ejs"
-
-
-
 
 type GetServerParams = {
     port?: string | number
@@ -15,12 +11,10 @@ const getApp = () => {
     const koa = new Koa();
     const router = getRouter();
 
-    koa.
-        use(router.routes());
+    koa.use(router.routes());
 
     return koa;
 }
-
 
 export const startServer = ({
     port = getConfigs().port,

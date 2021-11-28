@@ -1,4 +1,5 @@
 import Koa from 'koa'
+import koaBody from "koa-body"
 import { getConfigs } from '../config/config'
 import { getRouter } from '../routers/router'
 
@@ -7,11 +8,13 @@ type GetServerParams = {
     onListen?: () => void
 }
 
-const getApp = () => {
+export const getApp = () => {
     const koa = new Koa();
     const router = getRouter();
 
-    koa.use(router.routes());
+    koa.
+        use(koaBody()).
+        use(router.routes());
 
     return koa;
 }

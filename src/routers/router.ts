@@ -2,19 +2,22 @@ import Koa from "koa"
 import Router from "koa-router"
 import { sum } from "../services/sum"
 
-let users = [{
-    name: 'Delfino',
-    surname: 'De Chicchis'
+export let users = [{
+    id: 1,
+    name: 'a',
+    surname: 'b'
 },
 
 {
-    name: 'Name1',
-    surname: 'Surname1'
+    id: 2,
+    name: 'c',
+    surname: 'd'
 },
 
 {
-    name: 'Name2',
-    surname: 'Surname2'
+    id: 3,
+    name: 'e',
+    surname: 'f'
 }
 ]
 
@@ -26,8 +29,10 @@ export const getRouter = () => {
     });
 
     router.delete('/:id', (ctx: Koa.Context) => {
-        users.splice(ctx.params.id, 1);
-        ctx.body = users;
+        const index = users.findIndex(user => user.id == ctx.params.id)
+        if (index != -1) {
+            ctx.body = users.splice(index, 1);
+        }
     });
 
     router.get('/test/:num1/:num2', (ctx: Koa.Context) => {

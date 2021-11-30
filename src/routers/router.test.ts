@@ -34,30 +34,37 @@ describe('PUT', () => {
 })
 
 describe('DELETE', () => {
-    let users;
 
-    beforeAll(() => {
-        users = [{
-            name: 'Delfino',
-            surname: 'De Chicchis'
-        },
-
-        {
-            name: 'Name1',
-            surname: 'Surname1'
-        },
-
-        {
-            name: 'Name2',
-            surname: 'Surname2'
-        }
-        ]
-    })
-    it('DELETE success by deleting first user from users', async () => {
-        let userTest = users;
+    it('DELETE user not found', async () => {
         const response = await request(app.callback()).delete('/0');
+        expect(response.status).toEqual(404);
+    })
+
+    it('DELETE success by deleting first user from users', async () => {
+        const response = await request(app.callback()).delete('/1');
         expect(response.status).toEqual(200);
-        userTest.shift();
-        expect(users).toBe(userTest);
+        expect(response.body).toEqual([
+            {
+                id: 1,
+                name: 'a',
+                surname: 'b'
+            }
+        ])
+    })
+
+    it('DELETE the same user two times', async () => {
+
+        let response = await request(app.callback()).delete('/2');
+        expect(response.status).toEqual(200);
+        expect(response.body).toEqual([
+            {
+                id: 2,
+                name: 'c',
+                surname: 'd'
+            }
+        ])
+
+        response = await request(app.callback()).delete('/2');
+        expect(response.body).toEqual({});
     })
 })

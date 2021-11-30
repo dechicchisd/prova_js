@@ -25,7 +25,7 @@ describe('GET', () => {
 describe('PUT', () => {
     it('PUT success', async () => {
         const response = await request(app.callback()).put('/').send({
-            data: 'somthing',
+            data: 'something',
         })
         expect(response.status).toEqual(200)
         expect(response.text).toEqual('Hello World')
@@ -36,12 +36,12 @@ describe('PUT', () => {
 describe('DELETE', () => {
 
     it('DELETE user not found', async () => {
-        const response = await request(app.callback()).delete('/0');
+        const response = await request(app.callback()).delete('/user/0');
         expect(response.status).toEqual(404);
     })
 
     it('DELETE success by deleting first user from users', async () => {
-        const response = await request(app.callback()).delete('/1');
+        const response = await request(app.callback()).delete('/user/1');
         expect(response.status).toEqual(200);
         expect(response.body).toEqual([
             {
@@ -54,7 +54,7 @@ describe('DELETE', () => {
 
     it('DELETE the same user two times', async () => {
 
-        let response = await request(app.callback()).delete('/2');
+        let response = await request(app.callback()).delete('/user/2');
         expect(response.status).toEqual(200);
         expect(response.body).toEqual([
             {
@@ -64,7 +64,7 @@ describe('DELETE', () => {
             }
         ])
 
-        response = await request(app.callback()).delete('/2');
+        response = await request(app.callback()).delete('/user/2');
         expect(response.body).toEqual({});
     })
 })

@@ -1,11 +1,11 @@
 import { sum } from './sum'
 
-describe('SOMMA', () => {
-    it('somma di due interi positivi', () => {
+describe('SUM', () => {
+    it('sum of two positive integer', () => {
         expect(sum(3, 5)).toBe(8);
     })
 
-    it('somma di due numeri qualsiasi', () => {
+    it('sum of two positive and negative integer', () => {
         expect(sum(3, -5)).toBe(-2);
     })
 });

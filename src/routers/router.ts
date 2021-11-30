@@ -2,7 +2,7 @@ import Koa from "koa"
 import Router from "koa-router"
 import { sum } from "../services/sum"
 
-export let users = [{
+let users = [{
     id: 1,
     name: 'a',
     surname: 'b'
@@ -28,7 +28,7 @@ export const getRouter = () => {
         ctx.body = 'Hello World';
     });
 
-    router.delete('/:id', (ctx: Koa.Context) => {
+    router.delete('/user/:id', (ctx: Koa.Context) => {
         const index = users.findIndex(user => user.id == ctx.params.id)
         if (index != -1) {
             ctx.body = users.splice(index, 1);

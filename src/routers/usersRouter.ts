@@ -1,7 +1,7 @@
 import Koa from "koa"
 import Router from "koa-router"
-import { users } from "../data-access/data-access"
-import { deleteUser } from "../services/crudServices"
+import { users } from "../data-access/users/index"
+import { deleteUser } from "../services/users"
 
 export let getUsersRouter = () => {
     const router: Router = new Router();
@@ -15,8 +15,9 @@ export let getUsersRouter = () => {
     router.get('/user/:id');
 
     router.delete('/user/:id', (ctx: Koa.Context) => {
-        let deleted = deleteUser(users, ctx.params.id);
-        ctx.body = deleted;
+        const result = deleteUser(users, ctx.params.id);
+        ctx.body = result.deleteBody;
+        ctx.status = result.deleteStatus;
     });
 
     return router;

@@ -37,7 +37,7 @@ describe('DELETE', () => {
 
     it('DELETE user not found', async () => {
         const response = await request(app.callback()).delete('/user/0');
-        expect(response.body).toEqual({});
+        expect(response.status).toEqual(404);
     })
 
     it('DELETE success by deleting first user from users', async () => {

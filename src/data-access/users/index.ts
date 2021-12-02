@@ -1,18 +1,19 @@
-export let users = [{
+export let users = [
+  {
     id: 1,
     name: 'a',
-    surname: 'b'
-},
+    surname: 'b',
+  },
 
-{
+  {
     id: 2,
     name: 'c',
-    surname: 'd'
-},
+    surname: 'd',
+  },
 
-{
+  {
     id: 3,
     name: 'e',
-    surname: 'f'
-}
+    surname: 'f',
+  },
 ]

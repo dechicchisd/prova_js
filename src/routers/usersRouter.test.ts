@@ -4,6 +4,17 @@ import request from 'supertest'
 const app = getApp()
 
 describe('userRouter', () => {
+  describe('putUser', () => {
+    it('should return the edited user', async () => {
+      const response = await request(app.callback()).put('/users/1')
+      expect(response.status).toEqual(200)
+      expect(response.body).toEqual({
+        id: 1,
+        name: 'newName',
+        surname: 'newSurname',
+      })
+    })
+  })
   describe('getuser', () => {
     it('should return the user with given id', async () => {
       const response = await request(app.callback()).get('/users/1')

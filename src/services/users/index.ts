@@ -16,8 +16,8 @@ const deleteUser = async (id: number) => {
   }
 
   return {
-    deleteBody: deleted,
-    deleteStatus: status,
+    body: deleted,
+    status: status,
   }
 }
 
@@ -33,8 +33,26 @@ const getUser = async (id: number) => {
   }
 
   return {
-    getBody: user,
-    getStatus: status,
+    body: user,
+    status: status,
+  }
+}
+const putUser = async (id: number) => {
+  const users = await getUsersFromFile()
+  const index = users.findIndex(user => user.id == id)
+  let status: number = 404
+  let user = {}
+
+  if (index != -1) {
+    users[index].name = 'newName'
+    users[index].surname = 'newSurname'
+    user = users[index]
+    status = 200
+  }
+
+  return {
+    body: user,
+    status: status,
   }
 }
 
@@ -43,5 +61,6 @@ export const getUsersService = () => {
     deleteUser,
     getAllUsers,
     getUser,
+    putUser,
   }
 }

@@ -4,6 +4,14 @@ import request from 'supertest'
 const app = getApp()
 
 describe('userRouter', () => {
+  describe('getuser', () => {
+    it('should return the user with given id', async () => {
+      const response = await request(app.callback()).get('/users/1')
+      expect(response.status).toEqual(200)
+      expect(response.body).toEqual({id: 1, name: 'name1', surname: 'surname1'})
+    })
+  })
+
   describe('getAllUsers', () => {
     it('should return all the users', async () => {
       const response = await request(app.callback()).get('/users')
@@ -28,11 +36,7 @@ describe('userRouter', () => {
       const response = await request(app.callback()).delete('/users/1')
       expect(response.status).toEqual(200)
       expect(response.body).toEqual([
-        {
-          id: 1,
-          name: 'name1',
-          surname: 'surname1',
-        },
+        {id: 1, name: 'name1', surname: 'surname1'},
       ])
     })
 

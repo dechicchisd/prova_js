@@ -1,4 +1,11 @@
-export let deleteUser = (users, id: number) => {
+import {getUsersFromFile} from '../../data-access/users'
+
+const getAllUsers = () => {
+  return getUsersFromFile()
+}
+
+const deleteUser = async (id: number) => {
+  const users = await getUsersFromFile()
   const index = users.findIndex(user => user.id == id)
   let status: number = 404
   let deleted = {}
@@ -11,5 +18,12 @@ export let deleteUser = (users, id: number) => {
   return {
     deleteBody: deleted,
     deleteStatus: status,
+  }
+}
+
+export const getUsersService = () => {
+  return {
+    deleteUser,
+    getAllUsers,
   }
 }

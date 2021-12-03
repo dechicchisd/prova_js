@@ -1,5 +1,4 @@
-import { getUsersFromFile } from '../../data-access/users'
-import { splitName } from '../../utils'
+import {getUsersFromFile} from '../../data-access/users'
 
 const getAllUsers = () => {
   return getUsersFromFile()
@@ -39,16 +38,15 @@ const getUser = async (id: number) => {
   }
 }
 
-const putUser = async (id: number, nameAndSurname: string) => {
+const putUser = async (id: number, putUser) => {
   const users = await getUsersFromFile()
-  const divided = splitName(nameAndSurname)
   const index = users.findIndex(user => user.id == id)
   let status: number = 404
   let user = {}
 
   if (index != -1) {
-    users[index].name = divided.name
-    users[index].surname = divided.surname
+    users[index].name = putUser.name
+    users[index].surname = putUser.surname
     user = users[index]
     status = 200
   }

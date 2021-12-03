@@ -4,6 +4,10 @@ import {getUsersService} from '../services/users'
 
 const usersService = getUsersService()
 
+const createUser = async (ctx: Koa.Context) => {
+  ctx.body = await usersService.createUser(ctx.request.body)
+}
+
 const putUser = async (ctx: Koa.Context) => {
   const result = await usersService.putUser(ctx.params.id, ctx.request.body)
   ctx.body = result.body
@@ -35,8 +39,7 @@ export let getUsersRouter = () => {
   router.delete('/:id', deleteUser)
   router.get('/:id', getUser)
   router.put('/:id', putUser)
-
-  router.post('/')
+  router.post('/', createUser)
 
   return router
 }

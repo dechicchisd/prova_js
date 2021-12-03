@@ -1,4 +1,5 @@
 import {getUsersFromFile} from '../../data-access/users'
+import {User} from '../../model/users/schema'
 
 const getAllUsers = () => {
   return getUsersFromFile()
@@ -50,10 +51,25 @@ const putUser = async (id: number, putUser) => {
     user = users[index]
     status = 200
   }
-
   return {
     body: user,
     status: status,
+  }
+}
+
+const createUser = async nameAndSurname => {
+  const users = await getUsersFromFile()
+  const size = users.length
+  const newUser: User = {
+    id: size + 1,
+    name: nameAndSurname.name,
+    surname: nameAndSurname.surname,
+  }
+  users.push(newUser)
+
+  return {
+    users: users,
+    oldSize: size,
   }
 }
 
@@ -63,5 +79,6 @@ export const getUsersService = () => {
     getAllUsers,
     getUser,
     putUser,
+    createUser,
   }
 }

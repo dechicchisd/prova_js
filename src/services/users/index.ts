@@ -8,7 +8,7 @@ const getAllUsers = () => {
 const deleteUser = async (id: number) => {
   const users = await getUsersFromFile()
   const index = users.findIndex(user => user.id == id)
-  let status: number = 404
+  let status = 404
   let deleted = {}
 
   if (index != -1) {
@@ -25,7 +25,7 @@ const deleteUser = async (id: number) => {
 const getUser = async (id: number) => {
   const users = await getUsersFromFile()
   const index = users.findIndex(user => user.id == id)
-  let status: number = 404
+  let status = 404
   let user = {}
 
   if (index != -1) {
@@ -42,7 +42,7 @@ const getUser = async (id: number) => {
 const putUser = async (id: number, putUser) => {
   const users = await getUsersFromFile()
   const index = users.findIndex(user => user.id == id)
-  let status: number = 404
+  let status = 404
   let user = {}
 
   if (index != -1) {

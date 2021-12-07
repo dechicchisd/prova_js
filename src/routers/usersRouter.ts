@@ -1,6 +1,7 @@
 import Koa from 'koa'
 import Router from 'koa-router'
 import {getUsersService} from '../services/users'
+import {responseMiddleware} from '../middleware/responseMiddleware'
 
 const usersService = getUsersService()
 
@@ -39,7 +40,7 @@ export const getUsersRouter = () => {
   router.delete('/:id', deleteUser)
   router.get('/:id', getUser)
   router.put('/:id', putUser)
-  router.post('/', createUser)
+  router.post('/', responseMiddleware, createUser)
 
   return router
 }

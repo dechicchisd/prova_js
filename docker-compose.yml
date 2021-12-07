@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  docker-prova:
+    command: yarn 'start'
+    build:
+      context: .
+    image: docker-prova
+    ports:
+      - 3000:3000

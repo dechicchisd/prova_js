@@ -1,0 +1,24 @@
+name: push-check
+on:
+  push:
+    branches: [main]
+
+  pull_request:
+    branches: [main]
+
+jobs:
+  pr-checks:
+    runs-on: ubuntu-20.04
+    steps:
+      - uses: actions/checkout@v2
+      - uses: actions/setup-node@v2
+        with:
+          node-version: '16'
+      - name: Install dependencies
+        run: yarn --frozen-lockfile
+      - name: Run linter
+        run: yarn lint
+      - name: Check types
+        run: yarn check:types
+      - name: Run tests
+        run: yarn test

@@ -30,7 +30,7 @@ const deleteUser = async (ctx: Koa.Context) => {
   ctx.status = result.status
 }
 
-export let getUsersRouter = () => {
+export const getUsersRouter = () => {
   const router: Router = new Router({
     prefix: '/users',
   })

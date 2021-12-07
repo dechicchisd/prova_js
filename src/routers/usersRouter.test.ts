@@ -65,7 +65,7 @@ describe('userRouter', () => {
     })
 
     it('DELETE the same user two times', async () => {
-      let response = await request(app.callback()).delete('/users/2')
+      const response = await request(app.callback()).delete('/users/2')
       expect(response.status).toEqual(200)
       expect(response.body).toEqual([
         {

@@ -1,0 +1,10 @@
+version: '3.7'
+
+services:
+  manage-users:
+    build:
+      context: .
+    image: manage-users
+    container_name: manage-users
+    ports:
+      - 3000:3000

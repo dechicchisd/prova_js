@@ -1,10 +1,10 @@
 version: '3.7'
 
 services:
-  docker-prova:
-    command: yarn 'start'
+  manage-users:
     build:
       context: .
-    image: docker-prova
+    image: manage-users
+    container_name: manage-users
     ports:
       - 3000:3000

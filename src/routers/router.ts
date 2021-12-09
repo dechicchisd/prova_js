@@ -1,6 +1,7 @@
 import Koa from 'koa'
 import Router from 'koa-router'
 import {sum} from '../services/sum'
+import {getApiRouter} from './apiRouter'
 import {getUsersRouter} from './usersRouter'
 
 export const getRouter = () => {
@@ -15,7 +16,7 @@ export const getRouter = () => {
       'Hello test ' + sum(Number(ctx.params.num1), Number(ctx.params.num2))
   })
 
-  router.use(getUsersRouter().routes())
+  router.use(getUsersRouter().routes()).use(getApiRouter().routes())
 
   return router
 }
